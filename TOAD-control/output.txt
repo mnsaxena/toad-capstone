@@ -1,0 +1,8 @@
+{
+      "power": "off",
+      "mode": "Ackermann",
+      "forward speed": 0,
+      "steering angle": 0,
+      "turn speed": 50,
+      "turning": false
+}
