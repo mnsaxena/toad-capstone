@@ -9,14 +9,17 @@ import pygame as pg
 pg.joystick.init()
 pg.joystick.Joystick(0).init()
 
-# only move when button is pressed
-if (-1 == pg.joystick.Joystick(0).get_axis(0)):
-    motors.setSpeeds(0,0)
-    motors.setSpeeds(30,30)
-    
-else:
-    motors.setSpeeds(0,0)
-    
+
+while True: 
+    # only move when button is pressed
+    if (-1 == pg.joystick.Joystick(0).get_axis(0)):
+        
+        motors.setSpeeds(30,30)
+    elif(-1 == pg.joystick.Joystick(0).get_axis(1)): 
+        motors.setSpeeds(-30,-30)
+
+    else:
+        motors.setSpeeds(0,0)
     
 '''
 try:
