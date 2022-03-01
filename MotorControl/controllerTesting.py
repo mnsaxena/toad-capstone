@@ -6,32 +6,19 @@ import pygame as pg
 
 
 # setup joystick
-pg.joystick.init()
-pg.joystick.Joystick(0).init()
+#pg.joystick.init()
+#pg.joystick.Joystick(0).init()
 
+pg.init()
 
-while True: 
-    # only move when button is pressed
-    if (-1 == pg.joystick.Joystick(0).get_axis(0)):
-        
-        motors.setSpeeds(30,30)
-    elif(-1 == pg.joystick.Joystick(0).get_axis(1)): 
-        motors.setSpeeds(-30,-30)
+# only move when button is pressed
+while True:
 
-    else:
-        motors.setSpeeds(0,0)
+    # loop to check for events
+    for event in pg.event.get():
+        if event.type == pg.KEYDOWN:
+            if event.key == pg.K_a:
+                motors.setSpeeds(30,30)
+        else:
+            motors.setSpeeds(0,0)
     
-'''
-try:
-    motors.setSpeeds(0,0)
-    motors.setSpeeds(30,30)
-    
-    while True:
-        pulseWidth = input('pulse: ')
-
-
-except KeyboardInterrupt:
-    motors.forceStop()
-    servo.stopServo()
-'''
-
