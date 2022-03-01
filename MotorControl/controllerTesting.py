@@ -6,7 +6,6 @@ import pygame as pg
 
 
 # setup joystick
-pg.display.init()
 pg.joystick.init()
 pg.joystick.Joystick(0).init()
 
