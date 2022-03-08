@@ -15,29 +15,29 @@ def testMotors():
       x=sys.stdin.read(1)[0]
       print("You pressed", x)
       
-        # going forward
-        if x == "w":
-            print("Going forward...")
-            motors.setSpeeds(30,30)
-        # going backward
-        elif x == "s":
-            print("Going backward...")
-            motors.setSpeeds(-30,-30)
-        # turning left
-        elif x == "a":
-            print("Turning left...")
-            motors.setSpeeds(-30,30)
-        # turning right
-        elif x == "d":
-            print("Turning right...")
-            motors.setSpeeds(30,-30)
-        # quit program
-        elif x == "x":
-            motors.forceStop()
-            servo.stopServo()
-            sys.exit(101)
-            
-        else: motors.setSpeeds(0,0)
+    # going forward
+    if x == "w":
+        print("Going forward...")
+        motors.setSpeeds(30,30)
+    # going backward
+    elif x == "s":
+        print("Going backward...")
+        motors.setSpeeds(-30,-30)
+    # turning left
+    elif x == "a":
+        print("Turning left...")
+        motors.setSpeeds(-30,30)
+    # turning right
+    elif x == "d":
+        print("Turning right...")
+        motors.setSpeeds(30,-30)
+    # quit program
+    elif x == "x":
+        motors.forceStop()
+        servo.stopServo()
+        sys.exit(101)
+
+    else: motors.setSpeeds(0,0)
         
     termios.tcsetattr(sys.stdin, termios.TCSADRAIN, filedescriptors)
     return 1
@@ -52,35 +52,35 @@ def testServoMotors():
       x=sys.stdin.read(1)[0]
       print("You pressed", x)
       
-        # going forward
-        if x == "w":
-            print("Going forward...")
-            motors.setSpeeds(30,30)
-        # going backward
-        elif x == "s":
-            print("Going backward...")
-            motors.setSpeeds(-30,-30)
-        # turning left
-        elif x == "a":
-            print("Turning left...")
-            pulseWidth = input("pulse: ")
-            servo.setServoPulsewidth(pulseWidth)
-            #servo.setServoPulsewidth(2500)
-            servo.forceStop()
-        # turning right
-        elif x == "d":
-            print("Turning right...")
-            pulseWidth = input("pulse: ")
-            servo.setServoPulsewidth(pulseWidth)
-            #servo.setServoPulsewidth(500)
-            servo.forceStop()
-        # quit program
-        elif x == "x":
-            motors.forceStop()
-            servo.stopServo()
-            sys.exit(101)
-            
-        else: motors.setSpeeds(0,0)
+    # going forward
+    if x == "w":
+        print("Going forward...")
+        motors.setSpeeds(30,30)
+    # going backward
+    elif x == "s":
+        print("Going backward...")
+        motors.setSpeeds(-30,-30)
+    # turning left
+    elif x == "a":
+        print("Turning left...")
+        pulseWidth = input("pulse: ")
+        servo.setServoPulsewidth(pulseWidth)
+        #servo.setServoPulsewidth(2500)
+        servo.forceStop()
+    # turning right
+    elif x == "d":
+        print("Turning right...")
+        pulseWidth = input("pulse: ")
+        servo.setServoPulsewidth(pulseWidth)
+        #servo.setServoPulsewidth(500)
+        servo.forceStop()
+    # quit program
+    elif x == "x":
+        motors.forceStop()
+        servo.stopServo()
+        sys.exit(101)
+
+    else: motors.setSpeeds(0,0)
         
     termios.tcsetattr(sys.stdin, termios.TCSADRAIN, filedescriptors)
     return 1
