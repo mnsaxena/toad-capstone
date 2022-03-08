@@ -115,4 +115,4 @@ def testServoMotors():
     termios.tcsetattr(sys.stdin, termios.TCSADRAIN, filedescriptors)
     return 1
 
-    testMotors()
+testMotors()
