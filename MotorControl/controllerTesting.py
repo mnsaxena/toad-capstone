@@ -19,42 +19,42 @@ def testMotors():
         x = sys.stdin.read(1)[0]
         print('You pressed', x)
 
-      # going forward
+        # going forward
 
-    if x == 'w':
-        print('Going forward...')
-        motors.setSpeeds(30, 30)
-    elif x == 's':
+        if x == 'w':
+            print('Going forward...')
+            motors.setSpeeds(30, 30)
+        elif x == 's':
 
-    # going backward
+        # going backward
 
-        print('Going backward...')
-        motors.setSpeeds(-30, -30)
-    elif x == 'a':
+            print('Going backward...')
+            motors.setSpeeds(-30, -30)
+        elif x == 'a':
 
-    # turning left
+        # turning left
 
-        print('Turning left...')
-        motors.setSpeeds(-30, 30)
-    elif x == 'd':
+            print('Turning left...')
+            motors.setSpeeds(-30, 30)
+        elif x == 'd':
 
-    # turning right
+        # turning right
 
-        print('Turning right...')
-        motors.setSpeeds(30, -30)
-    elif x == 'x':
+            print('Turning right...')
+            motors.setSpeeds(30, -30)
+        elif x == 'x':
 
-    # quit program
+        # quit program
 
-        motors.forceStop()
-        servo.stopServo()
-        sys.exit(101)
-    else:
+            motors.forceStop()
+            servo.stopServo()
+            sys.exit(101)
+        else:
 
-        motors.setSpeeds(0, 0)
+            motors.setSpeeds(0, 0)
 
-    termios.tcsetattr(sys.stdin, termios.TCSADRAIN, filedescriptors)
-    return 1
+        termios.tcsetattr(sys.stdin, termios.TCSADRAIN, filedescriptors)
+        return 1
 
 
 # Part 2: testing if wasd can control motors and servos
@@ -115,5 +115,4 @@ def testServoMotors():
     termios.tcsetattr(sys.stdin, termios.TCSADRAIN, filedescriptors)
     return 1
 
-
-testMotors()
+    testMotors()
