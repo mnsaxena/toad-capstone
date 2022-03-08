@@ -72,13 +72,13 @@ def testServoMotors():
 
         if x == 'w':
             print('Going forward...')
-            motors.setSpeeds(30, 30)
+            motors.setSpeeds(40, 40)
         elif x == 's':
 
         # going backward
 
             print('Going backward...')
-            motors.setSpeeds(-30, -30)
+            motors.setSpeeds(-40, -40)
         elif x == 'a':
 
         # turning left
