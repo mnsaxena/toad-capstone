@@ -14,6 +14,8 @@ frameCenter = frameWidth / 2
 desiredTarget = 10
 # sets desired default speed
 defaultSpeed = 10
+# will store the most recent set speed here
+currentSpeed = 0
 
 # adjusts turning based on location of midpoint in frame
 def directionControl(midpoint):
@@ -37,9 +39,11 @@ def speedControl(coord1, coord2):
     if(targetSize < desiredTarget):
         # speed up
         motors.setSpeeds(defaultSpeed + 10, defaultSpeed + 10)
+        currentSpeed = defaultSpeed + 10
     elif(targetSize > desiredTarget):
         # slow down
         motors.setSpeeds(defaultSpeed - 10, defaultSpeed - 10)
+        currentSpeed = defaultSpeed - 10
     else:
         motors.setSpeeds(defaultSpeed, defaultSpeed)
     return 1
@@ -103,15 +107,26 @@ while stop_server == 0:
                     decoded = message.decode('UTF-8')
                     print(decoded)
                     
-                    # get coordinates from decoded string:
-                    decoded = decoded[1:-1].split(") (") # remove parantheses, split into list of pairs
-                    center = decoded[0].split(",")
-                    corner1 = decoded[1].split(",")
-                    corner2 = decoded[2].split(",")
-                    
-                    # FUNCTION CALLS HERE
-                    directionControl(center)
-                    speedControl(corner1, corner2)
+                    if(decoded=="stop"):
+                        # stop the TOAD
+                        motors.setSpeeds(0,0)
+                        motors.forceStop()
+                        stop = 1
+                    elif(decoded=="NaN"):
+                        # continue at the most recent speed/direction
+                        motors.setSpeeds(,)
+                        
+                    else:
+                        # get coordinates from decoded string:
+                        decoded = decoded[1:-1].split(") (") # remove parantheses, split into list of pairs
+                        center = decoded[0].split(",")
+                        corner1 = decoded[1].split(",")
+                        corner2 = decoded[2].split(",")
+                        
+                        # FUNCTION CALLS HERE
+                        directionControl(center)
+                        speedControl(corner1, corner2)
+                        
                     
                 else:
                     #close the socket to allow reconnection
