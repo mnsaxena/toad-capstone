@@ -84,22 +84,14 @@ def testServoMotors():
         # turning left
 
             print('Turning left...')
-            pulseWidth = input('pulse: ')
-            servo.setServoPulsewidth(pulseWidth)
-
-            # servo.setServoPulsewidth(2500)
-
+            servo.setServoPulsewidth(1900)
             servo.forceStop()
         elif x == 'd':
 
         # turning right
 
             print('Turning right...')
-            pulseWidth = input('pulse: ')
-            servo.setServoPulsewidth(pulseWidth)
-
-            # servo.setServoPulsewidth(500)
-
+            servo.setServoPulsewidth(1200)
             servo.forceStop()
         elif x == 'x':
 
