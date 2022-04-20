@@ -11,9 +11,9 @@ from rearMotors import motors
 frameWidth = 1920
 frameCenter = frameWidth / 2
 # desired target size (will adjust speed to try to maintain this)
-desiredTarget = 10
+desiredTarget = 510
 # sets desired default speed
-defaultSpeed = 10
+defaultSpeed = 45
 # will store the most recent set speed here
 currentSpeed = 0
 
@@ -33,18 +33,23 @@ def directionControl(midpoint):
 # adjusts speed based on size of target
 def speedControl(coord1, coord2):
     # calculate actual target size
-    targetSize = ((float(coord2[0]) - float(coord1[0])) + (float(coord2[1]) - float(coord1[1])))**0.5
-    
+    targetSize = ((int(coord2[0]) - int(coord1[0]))**2 + (int(coord2[1]) - int(coord1[1]))**2)**0.5
+    print("Target size = " + str(targetSize))    
     #adjust based on desired target size
     if(targetSize < desiredTarget):
         # speed up
+        print("Speed up!")
         motors.setSpeeds(defaultSpeed + 10, defaultSpeed + 10)
         currentSpeed = defaultSpeed + 10
+        print("CurrentSpeed: " + str(currentSpeed))
     elif(targetSize > desiredTarget):
         # slow down
+        print("Slow down!")
         motors.setSpeeds(defaultSpeed - 10, defaultSpeed - 10)
         currentSpeed = defaultSpeed - 10
+        print("CurrentSpeed: " + str(currentSpeed))
     else:
+        print("!!! Ideal speed !!!")
         motors.setSpeeds(defaultSpeed, defaultSpeed)
     return 1
 
@@ -105,20 +110,21 @@ while stop_server == 0:
                 if message:
                     # decode the bytes to string and process
                     decoded = message.decode('UTF-8')
-                    print(decoded)
                     
                     if(decoded=="stop"):
                         # stop the TOAD
                         motors.setSpeeds(0,0)
                         motors.forceStop()
                         stop = 1
-                    elif(decoded=="NaN"):
+                    elif("NaN" in decoded):
                         # continue at the most recent speed/direction
-                        motors.setSpeeds(,)
+                        print("NaN, maintaining speed...")
+                        print("CurrentSpeed: " + str(currentSpeed))
+                        motors.setSpeeds(currentSpeed,currentSpeed)
                         
                     else:
                         # get coordinates from decoded string:
-                        decoded = decoded[1:-1].split(") (") # remove parantheses, split into list of pairs
+                        decoded = decoded[1:-1].split(")(") # remove parantheses, split into list of pairs
                         center = decoded[0].split(",")
                         corner1 = decoded[1].split(",")
                         corner2 = decoded[2].split(",")
