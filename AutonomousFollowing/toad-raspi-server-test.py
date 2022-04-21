@@ -1,5 +1,6 @@
 #libraries for communication
 import socket
+import sys
 import time
 import select
 #libraries for controlling TOAD
@@ -120,7 +121,7 @@ while stop_server == 0:
                         # continue at the most recent speed/direction
                         print("NaN, maintaining speed...")
                         print("CurrentSpeed: " + str(currentSpeed))
-                        motors.setSpeeds(currentSpeed,currentSpeed)
+                       # motors.setSpeeds(currentSpeed,currentSpeed)
                         
                     else:
                         # get coordinates from decoded string:
@@ -153,6 +154,8 @@ while stop_server == 0:
                 stop_server = 1
 
         time.sleep(1)
-
+    except KeyboardInterrupt: 
+        motors.setSpeeds(0,0)
+        sys.exit(0)
     finally:
         s.close()
