@@ -91,7 +91,7 @@ def testServoMotors():
         # turning right
 
             print('Turning right...')
-            servo.setServoPulsewidth(1200)
+            servo.setServoPulsewidth(1000)
             servo.forceStop()
         elif x == 'x':
 
@@ -107,4 +107,4 @@ def testServoMotors():
     termios.tcsetattr(sys.stdin, termios.TCSADRAIN, filedescriptors)
     return 1
 
-testMotors()
+testServoMotors()
